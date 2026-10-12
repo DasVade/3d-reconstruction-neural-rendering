@@ -1,0 +1,32 @@
+{
+  "experiment": "nerf",
+  "mode": "eval",
+  "device": "cpu",
+  "seed": 5670,
+  "scale": 0.5,
+  "iterations": 0,
+  "image_shape": [
+    50,
+    50
+  ],
+  "samples": 64,
+  "position_frequencies": 10,
+  "direction_frequencies": 4,
+  "eval_view": 101,
+  "eval_mse": 0.02285037375986576,
+  "eval_psnr_db": 16.411066918514738,
+  "note": "Supplied checkpoint: view 101 was used for model selection, so this is validation reconstruction quality.",
+  "sweep_pose_indices": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    75,
+    90,
+    105
+  ],
+  "sweep_note": "Uses supplied camera poses, including training poses; not an unseen-view benchmark.",
+  "checkpoint": "model_nerf.pt",
+  "elapsed_seconds": 11.580766999861225
+}

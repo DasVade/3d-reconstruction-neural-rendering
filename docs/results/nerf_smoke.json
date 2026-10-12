@@ -1,0 +1,21 @@
+{
+  "experiment": "nerf",
+  "mode": "train",
+  "device": "cpu",
+  "seed": 5670,
+  "scale": 0.5,
+  "iterations": 5,
+  "image_shape": [
+    50,
+    50
+  ],
+  "samples": 16,
+  "position_frequencies": 10,
+  "direction_frequencies": 4,
+  "eval_view": 100,
+  "eval_mse": 0.18124140799045563,
+  "eval_psnr_db": 7.417425726233403,
+  "note": "Fresh training uses views 0:90. Views 90:100 are reserved for validation; this run evaluates test view 100 after fixed-step training.",
+  "checkpoint": "model_nerf.pt",
+  "elapsed_seconds": 6.852912599919364
+}

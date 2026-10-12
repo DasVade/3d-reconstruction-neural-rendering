@@ -1,0 +1,18 @@
+{
+  "experiment": "image",
+  "mode": "eval",
+  "device": "cpu",
+  "seed": 5670,
+  "scale": 1.0,
+  "iterations": 0,
+  "frequencies": 2,
+  "image_shape": [
+    105,
+    133
+  ],
+  "reconstruction_mse": 0.0021823791321367025,
+  "reconstruction_psnr_db": 26.610697997184502,
+  "note": "Image fitting quality on the input image; not a generalization metric.",
+  "checkpoint": "model_2d_2freq.pt",
+  "elapsed_seconds": 0.08827299997210503
+}

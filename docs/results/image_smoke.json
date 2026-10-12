@@ -1,0 +1,18 @@
+{
+  "experiment": "image",
+  "mode": "train",
+  "device": "cpu",
+  "seed": 5670,
+  "scale": 1.0,
+  "iterations": 5,
+  "frequencies": 6,
+  "image_shape": [
+    105,
+    133
+  ],
+  "reconstruction_mse": 0.05432119220495224,
+  "reconstruction_psnr_db": 12.650307070200768,
+  "note": "Image fitting quality on the input image; not a generalization metric.",
+  "checkpoint": "model_2d_6freq.pt",
+  "elapsed_seconds": 5.977221100125462
+}

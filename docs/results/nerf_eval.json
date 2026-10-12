@@ -1,0 +1,21 @@
+{
+  "experiment": "nerf",
+  "mode": "eval",
+  "device": "cpu",
+  "seed": 5670,
+  "scale": 1.0,
+  "iterations": 0,
+  "image_shape": [
+    100,
+    100
+  ],
+  "samples": 64,
+  "position_frequencies": 10,
+  "direction_frequencies": 4,
+  "eval_view": 101,
+  "eval_mse": 0.02649420127272606,
+  "eval_psnr_db": 15.768491687360395,
+  "note": "Supplied checkpoint: view 101 was used for model selection, so this is validation reconstruction quality.",
+  "checkpoint": "model_nerf.pt",
+  "elapsed_seconds": 5.190017800079659
+}

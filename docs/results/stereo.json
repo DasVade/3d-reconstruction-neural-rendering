@@ -1,0 +1,19 @@
+{
+  "experiment": "calibrated_stereo",
+  "scale": 0.25,
+  "kernel": "zncc",
+  "patch_size": 5,
+  "total_points": 2818,
+  "pairs": [
+    {
+      "views": [
+        0,
+        3
+      ],
+      "points": 2818,
+      "elapsed_seconds": 6.3850821000523865
+    }
+  ],
+  "elapsed_seconds": 6.6985475001856685,
+  "note": "Point count and runtime describe this run, not reconstruction accuracy. Supplied camera calibration is used."
+}

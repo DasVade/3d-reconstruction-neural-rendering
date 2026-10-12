@@ -1,0 +1,83 @@
+{
+  "experiment": "calibrated_stereo",
+  "scale": 0.25,
+  "kernel": "sad",
+  "patch_size": 5,
+  "total_points": 26183,
+  "pairs": [
+    {
+      "views": [
+        0,
+        2
+      ],
+      "points": 3421,
+      "elapsed_seconds": 0.9537850001361221
+    },
+    {
+      "views": [
+        2,
+        4
+      ],
+      "points": 3828,
+      "elapsed_seconds": 0.3020420998800546
+    },
+    {
+      "views": [
+        5,
+        7
+      ],
+      "points": 2478,
+      "elapsed_seconds": 0.30608839984051883
+    },
+    {
+      "views": [
+        8,
+        10
+      ],
+      "points": 2045,
+      "elapsed_seconds": 0.2933237000834197
+    },
+    {
+      "views": [
+        13,
+        15
+      ],
+      "points": 2685,
+      "elapsed_seconds": 0.30630709999240935
+    },
+    {
+      "views": [
+        16,
+        18
+      ],
+      "points": 2381,
+      "elapsed_seconds": 0.3596079000271857
+    },
+    {
+      "views": [
+        19,
+        21
+      ],
+      "points": 3115,
+      "elapsed_seconds": 0.49000809993594885
+    },
+    {
+      "views": [
+        22,
+        24
+      ],
+      "points": 2886,
+      "elapsed_seconds": 0.5008821000810713
+    },
+    {
+      "views": [
+        25,
+        27
+      ],
+      "points": 3344,
+      "elapsed_seconds": 0.5023749999236315
+    }
+  ],
+  "elapsed_seconds": 7.569025299977511,
+  "note": "Point count and runtime describe this run, not reconstruction accuracy. Supplied camera calibration is used."
+}
