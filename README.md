@@ -1,5 +1,29 @@
 # 3D Reconstruction and Neural Rendering
 
+## Audited research experiments — October 17, 2026
+
+Start with the [English experiment report](docs/EXPERIMENT_REPORT.md), [local project page](docs/project/index.html), [audit](docs/AUDIT.md), and [resume entries](docs/RESUME_ENTRIES.md). The project page is a local draft; [course/data publication clearance is unresolved](docs/PUBLICATION_REVIEW.md).
+
+Verified: 20,000-step fresh NeRF training on an RTX 4070 Ti; **24.19 dB PSNR / 0.831 SSIM** averaged over six 100×100 test views after validation selection. Ten tests pass. Matched stereo experiments and three-seed 2D encoding ablations are complete; no depth accuracy is claimed. The new checkpoint and full run artifacts are local under `outputs/` and ignored by Git.
+
+New experiments use the corrected image-down camera convention, finite midpoint integration, validation-selected checkpoints and independent test views:
+
+```powershell
+.\.venv\Scripts\python.exe -m vision5800.research benchmark --output outputs/nerf_benchmark
+.\.venv\Scripts\python.exe -m vision5800.research train --output outputs/formal_nerf
+.\.venv\Scripts\python.exe -m vision5800.research test --run outputs/formal_nerf --output outputs/formal_test
+.\.venv\Scripts\python.exe -m vision5800.research sample-sweep --run outputs/formal_nerf --output outputs/sample_sweep
+.\.venv\Scripts\python.exe -m vision5800.research image --output outputs/image_controlled
+.\.venv\Scripts\python.exe scripts/compare_stereo.py
+.\.venv\Scripts\python.exe scripts/build_research_report.py
+```
+
+Configuration: `configs/nerf_formal.json`. Use a fresh output directory to preserve previous runs. New training starts from scratch; checkpoint selection uses validation only. Sampling ablation changes **rendering only**, with weights frozen. Frequency ablation uses matched fresh training across three seeds. The original implementation and supplied weights remain intact under the baseline; the historical `vision5800 neural` commands below deliberately retain baseline conventions and are not the audited renderer.
+
+For the verified RTX 4070 Ti setup, install CUDA PyTorch before the base project (`torch==2.7.1` from `https://download.pytorch.org/whl/cu128`); keep the CUDA driver compatible. `requirements-gpu-lock.txt` records this iteration. The older CPU lock and October 12 results below are historical, not the new results.
+
+---
+
 基于 University of Pennsylvania CIS 5800 课程 Project A/B 整理的可复现项目。包含传统标定双目重建、2D 坐标神经表示和 NeRF。保留原有算法及权重接口，补充命令行、数据准备、图片/点云导出、小批量训练和验证记录。
 
 **定位：课程实现与工程整理。** 原课程模板、数据加载和框架不是原创研究；目前不宣称新算法、SLAM、动态 world model 或机器人部署。贡献边界见 [PROVENANCE.md](docs/PROVENANCE.md)。

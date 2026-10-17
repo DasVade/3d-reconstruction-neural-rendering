@@ -1,0 +1,12 @@
+{
+  "seed": 5670,
+  "steps": 20000,
+  "batch": 1024,
+  "samples": 32,
+  "width": 128,
+  "xf": 6,
+  "df": 3,
+  "lr": 0.0005,
+  "log_every": 200,
+  "validate_every": 1000
+}

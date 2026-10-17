@@ -10,7 +10,9 @@ import torch.nn.functional as F
 from .artifacts import save_image, save_metrics
 from .cli import ROOT
 from .image_field import model_2d, normalize_coord
-from .nerf import nerf_model, get_rays, stratified_sampling, positional_encoding, volumetric_rendering
+# Historical CLI intentionally remains compatible with supplied legacy checkpoints.
+# New audited training/evaluation lives in vision5800.research.
+from .baselines.nerf import nerf_model, get_rays, stratified_sampling, positional_encoding, volumetric_rendering
 
 
 def render_rays(model, origins, directions, samples, xf, df):

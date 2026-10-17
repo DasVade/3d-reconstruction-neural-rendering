@@ -1,0 +1,112 @@
+{
+  "settings": {
+    "steps": 2000,
+    "batch": 1024,
+    "lr": 0.0005,
+    "image_shape": [
+      105,
+      133
+    ],
+    "hidden_width": 128,
+    "optimizer": "Adam",
+    "seeds": [
+      5670,
+      5671,
+      5672
+    ],
+    "frequencies": [
+      0,
+      2,
+      6
+    ],
+    "control": "Same target, steps, optimizer, minibatch RNG stream per seed. Encoding changes first-layer parameter count.",
+    "metric_scope": "Input-image reconstruction, not held-out generalization."
+  },
+  "rows": [
+    {
+      "seed": 5670,
+      "frequency": 0,
+      "seconds": 2.137588499999765,
+      "psnr_db": 20.31274406004584,
+      "ssim": 0.6456201098528509,
+      "mse": 0.009305197471329883
+    },
+    {
+      "seed": 5670,
+      "frequency": 2,
+      "seconds": 2.353744000000006,
+      "psnr_db": 26.08754257162296,
+      "ssim": 0.8023191214473917,
+      "mse": 0.0024617601818429447
+    },
+    {
+      "seed": 5670,
+      "frequency": 6,
+      "seconds": 2.0172425999999177,
+      "psnr_db": 31.700953552690763,
+      "ssim": 0.9038036987654097,
+      "mse": 0.0006759345484609047
+    },
+    {
+      "seed": 5671,
+      "frequency": 0,
+      "seconds": 2.461641499999132,
+      "psnr_db": 20.794967354984635,
+      "ssim": 0.6584955521108001,
+      "mse": 0.00832728185406755
+    },
+    {
+      "seed": 5671,
+      "frequency": 2,
+      "seconds": 2.149196600000323,
+      "psnr_db": 26.082146433422025,
+      "ssim": 0.8036380014691051,
+      "mse": 0.002464820836504786
+    },
+    {
+      "seed": 5671,
+      "frequency": 6,
+      "seconds": 2.0620835999998235,
+      "psnr_db": 32.38974540219551,
+      "ssim": 0.9103554813454531,
+      "mse": 0.0005768002763430743
+    },
+    {
+      "seed": 5672,
+      "frequency": 0,
+      "seconds": 2.0663535999992746,
+      "psnr_db": 20.667759511591605,
+      "ssim": 0.6532252992528222,
+      "mse": 0.008574800978552977
+    },
+    {
+      "seed": 5672,
+      "frequency": 2,
+      "seconds": 1.93716140000015,
+      "psnr_db": 26.076409363162455,
+      "ssim": 0.8004168450176787,
+      "mse": 0.002468079039202969
+    },
+    {
+      "seed": 5672,
+      "frequency": 6,
+      "seconds": 1.8829475000002276,
+      "psnr_db": 31.82029263729752,
+      "ssim": 0.9087333944417273,
+      "mse": 0.0006576135243981186
+    }
+  ],
+  "hardware": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14",
+    "torch": "2.7.1+cu128",
+    "logical_cpu_count": 24,
+    "cuda_available": true,
+    "cuda_runtime": "12.8",
+    "cpu": "13th Gen Intel(R) Core(TM) i7-13700K",
+    "ram_bytes": 34022490112,
+    "gpu": "NVIDIA GeForce RTX 4070 Ti",
+    "vram_bytes": 12878086144,
+    "nvidia_smi": "NVIDIA GeForce RTX 4070 Ti, 12282 MiB, 595.95"
+  }
+}

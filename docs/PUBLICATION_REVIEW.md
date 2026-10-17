@@ -1,0 +1,10 @@
+# Publication conditions — checked 2026-10-17
+
+**Status: public release is not cleared. This work remains local.**
+
+1. The supplied course archive contains no verified license granting public redistribution of the assignment solution/framework. The available [Fall 2025 CIS5800 page](https://sites.google.com/seas.upenn.edu/cis5800f2025) states an academic-integrity policy, but is a different offering and does not explicitly grant permission to publish Spring 2026 solutions. Attempts to access a Spring 2026 public page did not establish a policy. Instructor/course permission is still needed before publishing course-derived code. This is an unresolved permission, not a conclusion that publication is forbidden.
+2. The official [Middlebury MVS data page](https://vision.middlebury.edu/mview/data/) supplies TempleRing and its calibration documentation. The reviewed page/packaged README do not provide an explicit redistribution license. Prefer directing users to the official download rather than mirroring the dataset. The benchmark [overview](https://vision.middlebury.edu/mview/) says the ground-truth surface is not distributed; this repository does not contain local ground-truth depths and reports no depth accuracy.
+3. The official [bmild/nerf code license](https://github.com/bmild/nerf/blob/master/LICENSE) is MIT for the software. It does not by itself establish a license for the course-repacked `lego_data.npz`, all input imagery, or course-specific solutions. The exact repack provenance and image rights require confirmation. Dataset similarity is not proof of licensing.
+4. A local project page and report can be reviewed now. No course code, raw data, weights, report images or page has been uploaded in this task. The local page includes a publication-status notice. Before public release, verify both assignment-code permission and dataset/figure reuse conditions; then prepare a cleared subset with attribution. No blanket open-source license is assigned.
+
+Checked sources are linked above; permission was not requested from third parties and no message was sent.

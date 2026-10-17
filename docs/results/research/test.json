@@ -1,0 +1,65 @@
+{
+  "checkpoint_step": 20000,
+  "checkpoint_sha256": "b843798a70062aa5e12d157a6ecd836361b09acb42616bc2c01bb5e164188db7",
+  "dataset_sha256": "036552f5de9bd5b29b70aa8aeb56ef8d3df0fc0ca4712f614199d0c412a66395",
+  "split": "test",
+  "experiment": "final fixed-configuration independent test views",
+  "rows": [
+    {
+      "view": 100,
+      "samples": 32,
+      "render_seconds": 0.02620500000011816,
+      "psnr_db": 22.946209364623442,
+      "ssim": 0.8401282247309284,
+      "mse": 0.005074334161479309
+    },
+    {
+      "view": 101,
+      "samples": 32,
+      "render_seconds": 0.024945999999545165,
+      "psnr_db": 22.67652585258155,
+      "ssim": 0.776895011970489,
+      "mse": 0.005399423777884072
+    },
+    {
+      "view": 102,
+      "samples": 32,
+      "render_seconds": 0.024890099999538506,
+      "psnr_db": 24.147557724659933,
+      "ssim": 0.8333353449850831,
+      "mse": 0.003848081198571202
+    },
+    {
+      "view": 103,
+      "samples": 32,
+      "render_seconds": 0.025662699999884353,
+      "psnr_db": 24.55404377963785,
+      "ssim": 0.8384101476326999,
+      "mse": 0.0035042543573601914
+    },
+    {
+      "view": 104,
+      "samples": 32,
+      "render_seconds": 0.026353799999924377,
+      "psnr_db": 26.96197651182058,
+      "ssim": 0.8661853617375932,
+      "mse": 0.002012807995020084
+    },
+    {
+      "view": 105,
+      "samples": 32,
+      "render_seconds": 0.02676270000029035,
+      "psnr_db": 23.840871998576027,
+      "ssim": 0.8290988133305424,
+      "mse": 0.004129645765347565
+    }
+  ],
+  "summary": [
+    {
+      "samples": 32,
+      "psnr_db": 24.18786420531656,
+      "ssim": 0.8306754840645559,
+      "render_seconds": 0.025803383333216818
+    }
+  ]
+}

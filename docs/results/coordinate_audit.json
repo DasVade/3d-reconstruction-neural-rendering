@@ -1,0 +1,101 @@
+{
+  "camera_count": 106,
+  "image_shape": [
+    100,
+    100,
+    3
+  ],
+  "mean_forward_radial_cosine": -1.0,
+  "rotation_determinant_range": [
+    0.9999997019767761,
+    1.0000001192092896
+  ],
+  "pairs": [
+    [
+      0,
+      41,
+      10
+    ],
+    [
+      6,
+      36,
+      28
+    ],
+    [
+      12,
+      39,
+      18
+    ],
+    [
+      18,
+      37,
+      38
+    ],
+    [
+      24,
+      29,
+      13
+    ],
+    [
+      30,
+      77,
+      52
+    ],
+    [
+      36,
+      33,
+      35
+    ],
+    [
+      42,
+      26,
+      9
+    ],
+    [
+      48,
+      91,
+      38
+    ],
+    [
+      54,
+      9,
+      39
+    ],
+    [
+      60,
+      78,
+      32
+    ],
+    [
+      66,
+      58,
+      26
+    ],
+    [
+      72,
+      17,
+      33
+    ],
+    [
+      78,
+      60,
+      31
+    ],
+    [
+      84,
+      46,
+      10
+    ]
+  ],
+  "sampson_distance_pixels": {
+    "1": {
+      "matches": 412,
+      "median": 0.14480393466983954
+    },
+    "-1": {
+      "matches": 412,
+      "median": 1.0743440940390712
+    }
+  },
+  "definition": "K inverse pixels, camera direction (x, sign*y, +1); descriptors filtered by Lowe ratio .75, no geometry-based inlier filtering."
+}

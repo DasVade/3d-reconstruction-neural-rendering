@@ -32,7 +32,8 @@ def get_rays(height, width, intrinsics, w_R_c, w_T_c):
     )
 
     x_normalized = (v - c_x) / f_x
-    y_normalized = -(u - c_y) / f_y
+    # Supplied poses use +X right, +Y down, +Z forward (not Blender axes).
+    y_normalized = (u - c_y) / f_y
 
     ray_directions = torch.stack(
         (x_normalized, y_normalized, torch.ones_like(x_normalized)), dim=-1
@@ -49,8 +50,9 @@ def stratified_sampling(ray_origins, ray_directions, near, far, samples):
     device = ray_origins.device
     dtype = ray_origins.dtype if torch.is_floating_point(ray_origins) else torch.float32
 
+    # Deterministic midpoint quadrature; keep the historical function name for API compatibility.
     depth_points = near + (
-        torch.arange(samples, device=device, dtype=dtype) * ((far - near) / samples)
+        (torch.arange(samples, device=device, dtype=dtype) + 0.5) * ((far - near) / samples)
     )
     depth_points = depth_points.view(1, 1, samples).expand(
         ray_origins.shape[0], ray_origins.shape[1], samples
@@ -127,14 +129,20 @@ def get_batches(ray_points, ray_directions, num_x_frequencies, num_d_frequencies
     ray_points_batches = get_chunks(ray_points)
     return ray_points_batches, ray_directions_batches
 
-def volumetric_rendering(rgb, s, depth_points, ray_directions=None):
+def volumetric_rendering(rgb, s, depth_points, ray_directions=None, interval_width=None):
     device = rgb.device
     H, W, N = s.shape
 
-    s = F.relu(s)
-    delta = torch.zeros((H, W, N), device=device, dtype=depth_points.dtype)
-    delta[:, :, :-1] = depth_points[:, :, 1:] - depth_points[:, :, :-1]
-    delta[:, :, -1] = 1e9
+    # Softplus preserves gradients for negative raw density. Integrate only the finite
+    # configured interval; residual transmittance sees the black dataset background.
+    s = F.softplus(s)
+    if interval_width is not None:
+        delta = torch.full_like(depth_points, interval_width)
+    else:
+        if N < 2:
+            raise ValueError('Single-sample integration requires interval_width.')
+        differences = depth_points[..., 1:] - depth_points[..., :-1]
+        delta = torch.cat([differences, differences[..., -1:]], dim=-1)
     if ray_directions is not None:
         # Convert z-intervals into world-space distances when rays are not unit length.
         delta = delta * torch.linalg.norm(ray_directions, dim=-1, keepdim=True)
@@ -181,5 +189,5 @@ def one_forward_pass(height, width, intrinsics, pose, near, far, samples, model,
 
     rgb = rgb.reshape(height, width, samples, 3)
     sigma = sigma.reshape(height, width, samples)
-    rec_image = volumetric_rendering(rgb, sigma, depth_points, ray_directions)
+    rec_image = volumetric_rendering(rgb, sigma, depth_points, ray_directions, (far-near)/samples)
     return rec_image

@@ -1,7 +1,7 @@
 import pytest
 torch = pytest.importorskip('torch')
-from vision5800.nerf import get_rays, volumetric_rendering, nerf_model
-from vision5800.neural_experiment import render_rays
+from vision5800.baselines.nerf import get_rays, volumetric_rendering, nerf_model
+from vision5800.baselines.neural_experiment import render_rays
 
 
 def test_camera_rays_follow_pose_and_principal_point():

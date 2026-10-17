@@ -1,0 +1,222 @@
+{
+  "settings": {
+    "scale": 0.25,
+    "patch_size": 5,
+    "depth_near": 0.5,
+    "depth_far": 0.6,
+    "hsv_threshold": 45,
+    "morph_close_kernel": 11,
+    "outlier_neighbors": 10,
+    "outlier_std_ratio": 2,
+    "rectification_padding": 20,
+    "pairs": [
+      [
+        0,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        13,
+        15
+      ]
+    ],
+    "repeats": 3,
+    "denominator": "all pixels in each pair rectified canvas; identical per kernel",
+    "timing": "matching + depth + filtering; excludes common rectification, file IO and plotting",
+    "accuracy": "No local depth ground truth; coverage and consistency are not accuracy."
+  },
+  "rows": [
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "kernel": "ssd",
+      "shape": [
+        88,
+        122
+      ],
+      "matching_filter_median_seconds": 0.383119699999952,
+      "runtime_repeats_seconds": [
+        3.450388999999632,
+        0.383119699999952,
+        0.37672160000056465
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.4475596125186289,
+      "final_valid_depth_fraction": 0.2840909090909091,
+      "point_count": 3050
+    },
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "kernel": "sad",
+      "shape": [
+        88,
+        122
+      ],
+      "matching_filter_median_seconds": 0.4144276999995782,
+      "runtime_repeats_seconds": [
+        0.4099075999993147,
+        0.42078439999932016,
+        0.4144276999995782
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.44187779433681074,
+      "final_valid_depth_fraction": 0.2866058122205663,
+      "point_count": 3077
+    },
+    {
+      "pair": [
+        0,
+        3
+      ],
+      "kernel": "zncc",
+      "shape": [
+        88,
+        122
+      ],
+      "matching_filter_median_seconds": 0.30512590000034834,
+      "runtime_repeats_seconds": [
+        0.3083033000002615,
+        0.30512590000034834,
+        0.3038366999999198
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.38161326378539495,
+      "final_valid_depth_fraction": 0.26248137108792846,
+      "point_count": 2818
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "kernel": "ssd",
+      "shape": [
+        84,
+        121
+      ],
+      "matching_filter_median_seconds": 0.37334029999965423,
+      "runtime_repeats_seconds": [
+        0.36983240000063233,
+        0.3752269000005981,
+        0.37334029999965423
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.5629673356946084,
+      "final_valid_depth_fraction": 0.3761314443132625,
+      "point_count": 3823
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "kernel": "sad",
+      "shape": [
+        84,
+        121
+      ],
+      "matching_filter_median_seconds": 0.395712900000035,
+      "runtime_repeats_seconds": [
+        0.395712900000035,
+        0.39165469999989,
+        0.40606469999966066
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.5570641479732389,
+      "final_valid_depth_fraction": 0.37662337662337664,
+      "point_count": 3828
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "kernel": "zncc",
+      "shape": [
+        84,
+        121
+      ],
+      "matching_filter_median_seconds": 0.297466600000007,
+      "runtime_repeats_seconds": [
+        0.2849163999999291,
+        0.297466600000007,
+        0.3103067000001829
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.4835694608421881,
+      "final_valid_depth_fraction": 0.3579299488390397,
+      "point_count": 3638
+    },
+    {
+      "pair": [
+        13,
+        15
+      ],
+      "kernel": "ssd",
+      "shape": [
+        84,
+        121
+      ],
+      "matching_filter_median_seconds": 0.4770650000000387,
+      "runtime_repeats_seconds": [
+        0.3452491000007285,
+        0.4990533999998661,
+        0.4770650000000387
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.4523809523809524,
+      "final_valid_depth_fraction": 0.2713498622589532,
+      "point_count": 2758
+    },
+    {
+      "pair": [
+        13,
+        15
+      ],
+      "kernel": "sad",
+      "shape": [
+        84,
+        121
+      ],
+      "matching_filter_median_seconds": 0.43280349999986356,
+      "runtime_repeats_seconds": [
+        0.43280349999986356,
+        0.4268066999993607,
+        0.477708999999777
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.4417552144824872,
+      "final_valid_depth_fraction": 0.2641676505312869,
+      "point_count": 2685
+    },
+    {
+      "pair": [
+        13,
+        15
+      ],
+      "kernel": "zncc",
+      "shape": [
+        84,
+        121
+      ],
+      "matching_filter_median_seconds": 0.2908192999993844,
+      "runtime_repeats_seconds": [
+        0.3164457000002585,
+        0.2908192999993844,
+        0.2833059000004141
+      ],
+      "positive_depth_fraction": 1.0,
+      "lr_consistency_fraction": 0.4181424635970091,
+      "final_valid_depth_fraction": 0.29811097992916175,
+      "point_count": 3030
+    }
+  ]
+}
