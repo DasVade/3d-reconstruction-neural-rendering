@@ -4,9 +4,15 @@ A reproducible computer-vision project combining calibrated stereo reconstructio
 
 ## Main result
 
-![NeRF test targets, predictions, and absolute RGB errors](docs/assets/research/test.png)
+<a href="docs/assets/research/test.png"><img src="docs/assets/research/test.png" width="720" alt="NeRF: worst and best test views, each with target, prediction, and absolute RGB error"></a>
 
 Target, prediction, and absolute RGB error for the lowest- and highest-scoring test views. **NeRF metrics below are averaged over six held-out 100×100 views of one synthetic Lego scene**, after checkpoint selection on a separate validation set. All six per-view scores and failure cases are reported.
+
+The figure is displayed smaller; the original raster is unchanged, with no smoothing or enhancement. Click it for the full-size labels and details.
+
+<a href="docs/assets/research/stereo_overview.png"><img src="docs/assets/research/stereo_overview.png" width="720" alt="TempleRing stereo: rectified input views 0 and 3, filtered depth map, and colored point cloud"></a>
+
+**Stereo — Middlebury TempleRing:** rectified input views 0/3, ZNCC, image scale 0.25, 5×5 patches, and depth filter (0.5, 0.6) in dataset units. The depth map and **2,818-point** cloud use the same saved filtering result. No depth accuracy is claimed. [Full configuration and metrics](docs/results/research/stereo.json).
 
 ## Core features
 
@@ -31,22 +37,22 @@ NeRF: 20,000 training steps on an RTX 4070 Ti, approximately 104 seconds includi
 Tested with Python 3.12 on Windows. PowerShell, from the repository root:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-.\.venv\Scripts\python.exe -m pip install -e '.[dev]'
-.\.venv\Scripts\python.exe -m pytest -q
+python -m venv '.venv'
+& '.\.venv\Scripts\python.exe' -m pip install torch --index-url 'https://download.pytorch.org/whl/cpu'
+& '.\.venv\Scripts\python.exe' -m pip install -e '.[dev]'
+& '.\.venv\Scripts\python.exe' -m pytest -q
 
 # Prepare inputs from your authorized local course archive; inputs are not in Git.
-.\.venv\Scripts\python.exe scripts/prepare_data.py --zip 'C:\path\HWs&Project.zip'
-.\.venv\Scripts\python.exe -m vision5800 stereo
-.\.venv\Scripts\python.exe -m vision5800.research benchmark --output outputs/benchmark
+& '.\.venv\Scripts\python.exe' 'scripts/prepare_data.py' --zip 'C:\path with spaces\HWs&Project.zip'
+& '.\.venv\Scripts\python.exe' -m vision5800 stereo
+& '.\.venv\Scripts\python.exe' -m vision5800.research benchmark --output 'outputs/benchmark'
 ```
 
 For GPU training, install a compatible CUDA PyTorch build instead of the CPU build. The verified GPU environment is recorded in [requirements-gpu-lock.txt](requirements-gpu-lock.txt). Then run:
 
 ```powershell
-.\.venv\Scripts\python.exe -m vision5800.research train --output outputs/my_nerf
-.\.venv\Scripts\python.exe -m vision5800.research test --run outputs/my_nerf --output outputs/my_test
+& '.\.venv\Scripts\python.exe' -m vision5800.research train --output 'outputs/my_nerf'
+& '.\.venv\Scripts\python.exe' -m vision5800.research test --run 'outputs/my_nerf' --output 'outputs/my_test'
 ```
 
 Configuration: [configs/nerf_formal.json](configs/nerf_formal.json). Use a fresh output directory for each run. Datasets, archives, checkpoints, and generated run outputs stay local; only selected figures and small metric records are versioned.
@@ -61,4 +67,3 @@ CIS 5800 supplied the task, data, camera calibration, architecture, and framewor
 - [Camera/rendering audit and preserved baseline](docs/AUDIT.md)
 - [Raw experiment metrics](docs/results/research/)
 - [Local English project page](docs/project/index.html) — static HTML; no public deployment
-- [Internship and RA/PhD resume entries](docs/RESUME_ENTRIES.md)

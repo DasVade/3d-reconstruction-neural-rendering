@@ -6,6 +6,10 @@ env/
 .tools/
 .gh/
 
+# Personal application wording/portfolio planning (local copies retained)
+/docs/RESUME_ENTRIES.md
+/docs/PORTFOLIO.md
+
 # Python/build/editor caches
 __pycache__/
 *.py[cod]

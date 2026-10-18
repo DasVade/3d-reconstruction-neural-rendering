@@ -166,26 +166,6 @@ The training command starts fresh, never loads supplied weights. Re-running it r
 '''
 (root/'docs/EXPERIMENT_REPORT.md').write_text(report,encoding='utf-8')
 
-resume=f'''# English resume entries — use only contributions you can explain
-
-**Calibrated Stereo Reconstruction and Neural Rendering | University of Pennsylvania, CIS 5800**
-
-## Computer vision / robotics internship version
-
-- Reproduced and audited a PyTorch neural-rendering pipeline, correcting camera-ray conventions and adding validation-based checkpoint selection, reproducible configurations, and GPU training on an RTX 4070 Ti.
-- Achieved {summary['psnr_db']:.2f} dB PSNR and {summary['ssim']:.3f} SSIM averaged over six held-out views of a 100×100 synthetic Lego scene, with target/prediction/error visualizations and recorded training curves.
-- Benchmarked SSD, SAD, and ZNCC stereo matching under matched settings across three calibrated image pairs, measuring runtime, depth coverage, left–right consistency, and exported colored point clouds.
-
-## RA / PhD version
-
-- Audited geometric and neural reconstruction implementations in a CIS 5800 course project; tested camera-coordinate consistency against known-pose correspondences and retained a traceable original baseline.
-- Designed controlled studies of positional-encoding frequency across three seeds and inference-only ray-sampling density, distinguishing image-fit quality, validation selection, and independent-view evaluation.
-- Trained a static-scene NeRF from scratch with disjoint training/validation/test views, obtaining mean {summary['psnr_db']:.2f} dB PSNR / {summary['ssim']:.3f} SSIM over six test views; documented limitations, failure cases, and reproducible experiment settings.
-
-These describe reproduction/experimental work, not an original algorithm, SLAM system or dynamic world model. The framework, data and architecture were course-provided; the applicant should identify their own original course contributions separately. This iteration used coding-assistant support. Date the project according to actual work completed. Public Code/Demo links require publication clearance.
-'''
-(root/'docs/RESUME_ENTRIES.md').write_text(resume,encoding='utf-8')
-
 page=root/'docs/project';page.mkdir(exist_ok=True)
 styles='''*{box-sizing:border-box}body{margin:0;background:#f7f5ef;color:#20282e;font:17px/1.65 system-ui,sans-serif}main{max-width:1080px;margin:auto;padding:52px 28px}h1,h2{font-family:Georgia,serif;line-height:1.12}h1{font-size:clamp(42px,6vw,72px);max-width:920px;margin:20px 0}h2{font-size:34px;margin-top:0}h3{margin-bottom:6px}p{max-width:860px}.eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#175e89}.sub{font-size:21px;color:#52606a}.notice{border-left:3px solid #b87931;padding:12px 18px;background:#fff9e9;font-size:14px}.metrics{display:flex;gap:38px;flex-wrap:wrap;margin:35px 0}.metrics strong{font:42px Georgia,serif;display:block;color:#175e89}.metrics span{font-size:14px}section{padding:38px 0;border-top:1px solid #d6d8d5}img{max-width:100%;height:auto;background:white;display:block}figure{margin:26px 0}figcaption{font-size:14px;color:#5a6570;margin-top:10px}table{border-collapse:collapse;width:100%;font-size:15px}td,th{text-align:left;border-bottom:1px solid #d9dedf;padding:12px 8px}th{color:#175e89}a{color:#175e89}nav{display:flex;gap:24px;flex-wrap:wrap;margin:25px 0}code,pre{font-size:13px;background:#e9edf0}pre{padding:20px;overflow:auto}.grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}@media(max-width:650px){.grid{grid-template-columns:1fr}main{padding:30px 18px}table{font-size:12px}td,th{padding:8px 4px}}'''
 body=f'''<div class="eyebrow">Yixiao Liu · University of Pennsylvania · Course project & experimental extension</div>
@@ -200,8 +180,8 @@ body=f'''<div class="eyebrow">Yixiao Liu · University of Pennsylvania · Course
 <section><div class="eyebrow">Controlled experiment 02 · rendering only</div><h2>More samples, fixed weights</h2><p>A single checkpoint trained with {config['samples']} samples is rendered with 16/32/64/128 samples on validation views. This isolates inference settings; it does not measure changes to training sample count.</p><img src="../assets/research/samples.png" alt="Validation quality and render-time tradeoff as inference samples change">{html_table(['Samples','Val PSNR','Val SSIM','Seconds/view'],sw)}</section>
 <section><div class="eyebrow">Classical geometry · matched settings</div><h2>Stereo coverage, consistency, and cost</h2><p>Three image pairs, identical resolution, patch and filtering settings. Timing is the mean of per-pair medians from three repeats. Point counts sum separate pair results. No depth ground truth is available: these are not accuracy scores.</p>{html_table(['Kernel','Seconds/pair','LR pass','Final coverage','Points'],st)}<img src="../assets/research/stereo.png" alt="SSD, SAD and ZNCC point-cloud previews for the same image pair"></section>
 <section id="limits"><h2>What the results do—and do not—show</h2><p>The lowest test score is {worst['psnr_db']:.2f} dB (view {worst['view']}). Remaining artifacts, thin structures and view-dependent effects are visible in the error panels. One scene, known poses and six test views do not establish real-world generalization. Stereo retains holes and outliers; depth coverage is not depth accuracy. NeRF uses one training seed.</p><h3>Contribution boundary</h3><p>The course supplied the problem, data, architecture and framework. This extension adds convention checks, a ray-sign correction, validation-selected training, independent metrics and controlled comparisons, with coding-assistant support. It is neither a new algorithm, a SLAM system, nor a dynamic world model.</p></section>
-<section><h2>Inspect and reproduce</h2><p>Recorded configurations, hardware, random seeds, checkpoint/data hashes, per-view metrics and commands are in the report. The implementation remains local pending publication clearance.</p><nav><a href="../EXPERIMENT_REPORT.md">Experiment report</a><a href="../AUDIT.md">Audit notes</a><a href="../PROVENANCE.md">Provenance</a><a href="../RESUME_ENTRIES.md">Resume entries</a></nav><pre>python -m vision5800.research train --output outputs/formal_nerf
+<section><h2>Inspect and reproduce</h2><p>Recorded configurations, hardware, random seeds, checkpoint/data hashes, per-view metrics and commands are in the report. The implementation remains local pending publication clearance.</p><nav><a href="../EXPERIMENT_REPORT.md">Experiment report</a><a href="../AUDIT.md">Audit notes</a><a href="../PROVENANCE.md">Provenance</a></nav><pre>python -m vision5800.research train --output outputs/formal_nerf
 python -m vision5800.research test --run outputs/formal_nerf --output outputs/formal_test
 python scripts/compare_stereo.py</pre></section>'''
 (page/'index.html').write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Calibrated Stereo & Audited Neural Rendering — Yixiao Liu</title><style>'+styles+'</style></head><body><main>'+body+'</main></body></html>',encoding='utf-8')
-print('Wrote report, resume entries and local project page.')
+print('Wrote report and local project page.')
