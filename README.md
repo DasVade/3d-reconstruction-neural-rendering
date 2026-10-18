@@ -8,8 +8,6 @@ A reproducible computer-vision project combining calibrated stereo reconstructio
 
 Target, prediction, and absolute RGB error for the lowest- and highest-scoring test views. **NeRF metrics below are averaged over six held-out 100×100 views of one synthetic Lego scene**, after checkpoint selection on a separate validation set. All six per-view scores and failure cases are reported.
 
-The figure is displayed smaller; the original raster is unchanged, with no smoothing or enhancement. Click it for the full-size labels and details.
-
 <a href="docs/assets/research/stereo_overview.png"><img src="docs/assets/research/stereo_overview.png" width="720" alt="TempleRing stereo: rectified input views 0 and 3, filtered depth map, and colored point cloud"></a>
 
 **Stereo — Middlebury TempleRing:** rectified input views 0/3, ZNCC, image scale 0.25, 5×5 patches, and depth filter (0.5, 0.6) in dataset units. The depth map and **2,818-point** cloud use the same saved filtering result. No depth accuracy is claimed. [Full configuration and metrics](docs/results/research/stereo.json).
