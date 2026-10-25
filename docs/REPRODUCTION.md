@@ -1,42 +1,46 @@
-# 本次实际复现记录
+# Historical reproduction record — October 12, 2026
 
-> 这是 2026-10-12 的历史记录。2026-10-17 的坐标修正、正式训练、独立测试与受控实验见 [英文实验报告](EXPERIMENT_REPORT.md)；旧结果和原实现保留用于追溯。下面“未完成”描述的是当时状态，不代表最新进度。
+This record covers the earlier CPU checks of the supplied implementations and
+weights. The later coordinate correction, formal training and independent test
+evaluation are in the [experiment report](EXPERIMENT_REPORT.md).
 
-日期：2026-10-12。环境：Windows、Python 3.12.14、CPU PyTorch，精确依赖见 `requirements-lock.txt`。所有数值来自本次实际执行，未把原 notebook 旧输出当作本次结果。
+Environment: Windows, Python 3.12.14 and CPU PyTorch; exact versions are in
+`requirements-lock.txt`.
 
-## 已完成的检查
+## Executed checks
 
-- 六项测试通过：相对位姿一致性、深度重投影、已知平移匹配、相机射线、空/不透明体渲染与梯度、分块一致性。
-- Project A 默认双目重建：ZNCC、5×5 patch、0.25 scale、views 0/3。
-- Project A 原 notebook 九对视图聚合：SAD、5×5 patch、0.25 scale。
-- 三个输入图像 MLP 权重分别加载并评估。
-- NeRF 原权重在视图 101、100×100、64 samples 下完成评估。
-- 2D 和 NeRF 都完成 5 步从随机初始化的训练、权重保存和图片输出。仅验证训练流程，非充分训练结果。
-- NeRF 在 50×50 下导出 8 个给定位姿的 GIF。
+- Six tests: relative-pose consistency, depth reprojection, known-translation
+  matching, camera rays, empty/opaque volume rendering and gradients, chunking.
+- Default stereo: ZNCC, 5×5 patches, scale 0.25, views 0/3.
+- Nine-pair aggregation from the original notebook: SAD, 5×5 patches, scale 0.25.
+- Three supplied input-image MLP checkpoints evaluated.
+- Supplied NeRF weights evaluated on view 101 at 100×100, 64 samples.
+- Five-step random-initialization training smoke checks for 2D and NeRF, with
+  weight/image export.
+- Eight-pose NeRF GIF rendered at 50×50.
 
-| 实验 | 本次结果 | 解释 |
+| Experiment | Result | Interpretation |
 |---|---:|---|
-| 双目 ZNCC、views 0/3 | 2,818 点 | 过滤后点数，不是精度指标 |
-| 九对视图 SAD 聚合 | 26,183 点 | 包含不同视图的点，未去重/做表面重建 |
-| 2D MLP L=0 | 19.67 dB | 输入图像拟合 |
-| 2D MLP L=2 | 26.61 dB | 输入图像拟合 |
-| 2D MLP L=6 | 32.08 dB | 输入图像拟合 |
-| 原 NeRF 权重、视图 101 | 15.77 dB | 原模型选择视图上的验证质量 |
+| Stereo ZNCC, views 0/3 | 2,818 points | Filtered point count |
+| Nine-pair SAD aggregation | 26,183 points | Separate view results; not deduplicated or meshed |
+| 2D MLP L=0 | 19.67 dB | Input-image fitting |
+| 2D MLP L=2 | 26.61 dB | Input-image fitting |
+| 2D MLP L=6 | 32.08 dB | Input-image fitting |
+| Supplied NeRF weights, view 101 | 15.77 dB | Quality on the original model-selection view |
 
-详细数值和参数见 `docs/results/*.json`；完整图片、NPZ、PLY、CSV 和本次短训练权重位于本地 `outputs/`。CPU 运行耗时会受并行任务和首次加载影响，不作为正式性能基准。
+Detailed records are in `docs/results/*.json`; full images, NPZ, PLY, CSV and
+smoke-check weights remain in local `outputs/`. CPU timings include loading and
+concurrent-work effects, so the formal runtime protocol is reported separately.
 
-## 可视化检查
+## Visual observations
 
-![2D 位置编码对比](assets/image_frequency_comparison.png)
+![2D positional encoding comparison](assets/image_frequency_comparison.png)
+![Nine-pair point-cloud aggregation](assets/stereo_aggregate.png)
+![NeRF target on the left and prediction on the right](assets/nerf_comparison.png)
+![Supplied-checkpoint camera sweep](assets/nerf_camera_sweep.gif)
 
-![九对视图点云聚合](assets/stereo_aggregate.png)
-
-![NeRF 目标与预测，左侧目标，右侧预测](assets/nerf_comparison.png)
-
-![已有 NeRF 权重给定位姿渲染](assets/nerf_camera_sweep.gif)
-
-2D 模型的高频率配置更好地保留细节。双目点云能展示几何流程，但默认降低了图像分辨率，存在离群点和表面不完整。当前 NeRF 权重输出明显模糊，适合作为复现和诊断起点，不能称为高质量渲染成果。GIF 包含给定训练位姿，不是独立的新视角测试。
-
-## 未完成的实验
-
-尚未完成 NeRF 充分重训、完整独立测试集评估、全分辨率多对视图重建或深度真值误差测量。没有检查 Gradescope 分数，也没有把整套课程代码认定为个人独立原创。后续先固定配置、补足训练曲线，再选择用于公开作品集的结果。
+Higher-frequency 2D encoding retains more detail. Low-resolution stereo contains
+outliers and incomplete surfaces. The supplied NeRF checkpoint is visibly blurry.
+The GIF includes training poses; the six-view held-out benchmark belongs to the
+later formal run. Full-resolution stereo and depth-ground-truth evaluation were
+not performed in this historical run.

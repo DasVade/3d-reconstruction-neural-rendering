@@ -2,15 +2,17 @@
 
 University of Pennsylvania CIS 5800 course project · Reproduction and experimental extension · 2026-10-17
 
-Public source release authorized by the owner on October 24, 2026; raw datasets and checkpoints are excluded. See [release/data notes](PUBLICATION_REVIEW.md) and the [live project page](https://yixiaoliu.me/projects/3d-reconstruction-neural-rendering/). This is a static-scene reconstruction project with known camera calibration, not SLAM or a dynamic world model.
+The experiments use calibrated static scenes. See [data preparation](DATA.md) and the [live project page](https://yixiaoliu.me/projects/3d-reconstruction-neural-rendering/).
 
-## Scope and contribution
+## Project scope
 
-The course supplied the task, data, camera calibration, network architecture and framework. The supplied student files contain implementations but authorship of every line is not established by file presence. This extension, built with coding-assistant support, audits conventions, repairs the image-down ray sign, preserves the baseline, adds validation-selected training, independent evaluation, matched experiments and reproducible reporting. These engineering and experimental contributions do not constitute an original reconstruction algorithm. Personal resume claims should reflect work the applicant can explain and defend.
+Developed from Penn CIS 5800 coursework. The implementation adds camera-convention
+checks, the image-down ray-sign correction, finite rendering, validation-selected
+training, independent-view evaluation and controlled stereo/encoding experiments.
 
 ## Audit and baseline
 
-The original implementation is retained at commit `5c29239` and in `src/vision5800/baselines/`. Legacy CLI inference still uses original rendering. In 412 cross-view SIFT matches, the known-pose median Sampson distance was 0.145 px for positive image-down y and 1.074 px for the previous negative sign. +Z already points toward the scene; it was retained. Encoding was consistent. New experiments also use midpoint samples, finite [.667,2.0] integration, black residual background and softplus density. These choices differ from the baseline's endpoint samples, infinite terminal interval and ReLU density; comparisons are not single-variable causal claims. Unit tests verify camera reprojection, finite analytic opacity, gradients and baseline behavior.
+The original implementation is retained at commit `5c29239` and in `src/vision5800/baselines/`. Legacy CLI inference still uses original rendering. In 412 cross-view SIFT matches, the known-pose median Sampson distance was 0.145 px for positive image-down y and 1.074 px for the previous negative sign. +Z already points toward the scene; it was retained. Encoding was consistent. New experiments also use midpoint samples, finite [.667,2.0] integration, black residual background and softplus density. These choices differ from the baseline's endpoint samples, infinite terminal interval and ReLU density; baseline comparisons combine these changes. Unit tests verify camera reprojection, finite analytic opacity, gradients and baseline behavior.
 
 ## Compute and fixed protocol
 
@@ -24,7 +26,7 @@ NeRF: 128-wide eight-layer position trunk, skip connection and direction-conditi
 
 ## Independent test results
 
-Mean per-view PSNR **24.19 dB**, mean SSIM **0.831**, using the fixed 32-sample renderer. PSNR uses RGB MSE in [0,1], averaged as per-view dB. SSIM uses 11×11 Gaussian windows (sigma 1.5), population covariance, K1=.01/K2=.03, valid 5-pixel crop and RGB-channel averaging. Six views of one synthetic scene are a small evaluation; no real-world generalization is claimed.
+Mean per-view PSNR **24.19 dB**, mean SSIM **0.831**, using the fixed 32-sample renderer. PSNR uses RGB MSE in [0,1], averaged as per-view dB. SSIM uses 11×11 Gaussian windows (sigma 1.5), population covariance, K1=.01/K2=.03, valid 5-pixel crop and RGB-channel averaging. Evaluation covers six views of one synthetic scene.
 
 | Test view | PSNR (dB) | SSIM |
 | --- | --- | --- |
@@ -80,7 +82,7 @@ No local ground-truth depth is available, so **no depth accuracy is reported**. 
 
 ## Failure cases and limitations
 
-Test view 101 is the lowest-scoring view (22.68 dB / SSIM 0.777); its image/error panel is shown rather than hiding it. Inspect thin structures, edges and specular surfaces for remaining artifacts. The model uses one scene, known poses and no hierarchical sampling. Finite training and coarse quadrature can miss details; validation selection does not guarantee external generalization. Stereo has holes, outliers and scene-specific filtering; lower coverage may reject wrong matches or discard valid ones. No geometric accuracy, autonomous robot deployment or novel algorithm is established. NeRF has one training seed; only the 2D study measures seed variability.
+Test view 101 is the lowest-scoring view (22.68 dB / SSIM 0.777); its image/error panel shows the remaining artifacts. Inspect thin structures, edges and specular surfaces for remaining artifacts. The model uses one scene, known poses and no hierarchical sampling. Finite training and coarse quadrature can miss details; validation selection does not guarantee external generalization. Stereo has holes, outliers and scene-specific filtering; lower coverage may reject wrong matches or discard valid ones. NeRF has one training seed; only the 2D study measures seed variability.
 
 ## Reproduce
 
@@ -98,4 +100,4 @@ From the repository root with its environment installed:
 .\.venv\Scripts\python.exe scripts/build_research_report.py
 ```
 
-The training command starts fresh, never loads supplied weights. Re-running it replaces that output run, so use a new folder to preserve a run. Dataset preparation remains local; see README and PUBLICATION_REVIEW.md. Raw metrics: [test](results/research/test.json), [training](results/research/run.json), [stereo](results/research/stereo.json), [encoding](results/research/image.json), [sampling](results/research/sample_sweep.json).
+The training command starts fresh, never loads supplied weights. Re-running it replaces that output run, so use a new folder to preserve a run. Dataset preparation remains local; see README and [DATA.md](DATA.md). Raw metrics: [test](results/research/test.json), [training](results/research/run.json), [stereo](results/research/stereo.json), [encoding](results/research/image.json), [sampling](results/research/sample_sweep.json).

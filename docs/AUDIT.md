@@ -1,20 +1,20 @@
-# NeRF implementation audit — 2026-10-17
+# NeRF camera and rendering conventions
 
-## Evidence status at the start
+The research workflow uses corrected camera rays, finite volume rendering,
+validation-selected training and explicit test-view evaluation. The earlier
+supplied-weight checks are recorded in [REPRODUCTION.md](REPRODUCTION.md).
 
-Verified historically: the six tests, low-resolution stereo outputs, legacy checkpoint inference, and five-step training smoke checks listed in REPRODUCTION.md. Not verified historically: sufficient training, validation-selected checkpoints, SSIM on independent test views, matched stereo comparisons, controlled training ablations. The course provides the problem, framework, datasets, camera calibration, network design and some utilities; these are not new algorithmic contributions.
-
-## Camera convention: actual correction
+## Camera convention
 
 The supplied 106 poses are camera-to-world matrices. Rotation determinants are approximately +1. The +Z camera axis points toward the origin (mean forward/radial cosine -1), so a blanket Blender -Z change would be wrong. Camera +Y points down for this converted dataset.
 
-`scripts/audit_coordinates.py` compares known-pose epipolar consistency using 412 Lowe-ratio-filtered SIFT matches across 15 nearby pairs. Median Sampson distance is 0.145 px with camera direction `(x,+y,+1)`, versus 1.074 px with the previous `(x,-y,+1)`. No geometric inlier filtering was used to favor a convention. This is an audit diagnostic, not reconstruction accuracy. The new ray generator uses the positive image-down axis. A synthetic rotated-pose projection test checks the same convention independently.
+`scripts/audit_coordinates.py` compares known-pose epipolar consistency using 412 Lowe-ratio-filtered SIFT matches across 15 nearby pairs. Median Sampson distance is 0.145 px with camera direction `(x,+y,+1)`, versus 1.074 px with the previous `(x,-y,+1)`. Matches use the same Lowe-ratio filter for both conventions, without geometric inlier filtering. Sampson distance measures epipolar consistency. The new ray generator uses the positive image-down axis. A synthetic rotated-pose projection test checks the same convention independently.
 
 ## Encoding and rendering
 
 Sin/cos encoding uses `2**i*pi*x`, concatenates input coordinates and is internally consistent. Position frequencies and view-direction frequencies are separate. Directions are normalized for direction encoding, while their world norm scales optical path lengths.
 
-New experiments use deterministic midpoint quadrature over [.667,2.0]. The finite integration interval replaces the infinite terminal interval; unabsorbed light sees the black dataset background. Softplus replaces ReLU raw-density activation to keep gradients at negative initial density. These are explicit rendering/training choices, not claimed new algorithms. They change the parameterization, so old weights are not reused in new experiments. Constant-medium tests compare opacity with an analytic finite-path integral.
+New experiments use deterministic midpoint quadrature over [.667,2.0]. The finite integration interval replaces the infinite terminal interval; unabsorbed light sees the black dataset background. Softplus replaces ReLU raw-density activation to keep gradients at negative initial density. These rendering/training choices define the new model parameterization. They change the parameterization, so old weights are not reused in new experiments. Constant-medium tests compare opacity with an analytic finite-path integral.
 
 ## Splits and checkpoint selection
 
@@ -24,4 +24,4 @@ The sample-count study is **render-only on validation views**, with a single fix
 
 ## Traceable baseline
 
-Git commit `5c29239` preserves the complete earlier repository. `src/vision5800/baselines/nerf.py` is byte-preserved from that state; its archived runner changes relative imports only. The historical `vision5800 neural` CLI retains baseline rendering for supplied weights. Use `python -m vision5800.research` for audited experiments. Original checkpoints and old results are not overwritten. Baseline-to-new scores are descriptive, not a single-variable causal improvement claim.
+Git commit `5c29239` preserves the complete earlier repository. `src/vision5800/baselines/nerf.py` is byte-preserved from that state; its archived runner changes relative imports only. The historical `vision5800 neural` CLI retains baseline rendering for supplied weights. Use `python -m vision5800.research` for audited experiments. Original checkpoints and old results are not overwritten. The baseline and research renderer differ in ray sign, quadrature, interval and density activation; their score difference combines these changes.

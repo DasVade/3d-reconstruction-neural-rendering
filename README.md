@@ -10,7 +10,7 @@ Target, prediction, and absolute RGB error for the lowest- and highest-scoring t
 
 <a href="docs/assets/research/stereo_overview.png"><img src="docs/assets/research/stereo_overview.png" width="720" alt="TempleRing stereo: rectified input views 0 and 3, filtered depth map, and colored point cloud"></a>
 
-**Stereo — Middlebury TempleRing:** rectified input views 0/3, ZNCC, image scale 0.25, 5×5 patches, and depth filter (0.5, 0.6) in dataset units. The depth map and **2,818-point** cloud use the same saved filtering result. No depth accuracy is claimed. [Full configuration and metrics](docs/results/research/stereo.json).
+**Stereo — Middlebury TempleRing:** rectified input views 0/3, ZNCC, image scale 0.25, 5×5 patches, and depth filter (0.5, 0.6) in dataset units. The depth map and **2,818-point** cloud use the same saved filtering result. Depth ground truth is unavailable for this comparison. [Full configuration and metrics](docs/results/research/stereo.json).
 
 ## Core features
 
@@ -57,7 +57,7 @@ Configuration: [configs/nerf_formal.json](configs/nerf_formal.json). Use a fresh
 
 ## Course origin and extensions
 
-CIS 5800 supplied the task, data, camera calibration, architecture, and framework. Extensions include an image-y ray-sign correction, analytic rendering tests, reproducible training and evaluation, and controlled comparisons, developed with coding-assistant support. This is a course-project reproduction and experimental extension. See [provenance](docs/PROVENANCE.md) and [release/data notes](docs/PUBLICATION_REVIEW.md).
+CIS 5800 supplied the task, data, camera calibration, architecture, and framework. Extensions include an image-y ray-sign correction, analytic rendering tests, reproducible training and evaluation, and controlled comparisons. See [implementation notes](docs/PROVENANCE.md) and [data preparation](docs/DATA.md).
 
 ## Detailed experiments
 
