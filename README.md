@@ -1,5 +1,7 @@
 # 3D Reconstruction and Neural Rendering
 
+**Project date:** Spring 2026
+
 A reproducible computer-vision project combining calibrated stereo reconstruction and a PyTorch NeRF. Developed from University of Pennsylvania CIS 5800 coursework, with camera-convention audits, validation-selected training, independent-view evaluation, and controlled experiments.
 
 ## Main result
@@ -28,7 +30,7 @@ Target, prediction, and absolute RGB error for the lowest- and highest-scoring t
 | 2D encoding L=2 | 26.08 ± 0.01 dB | 0.802 | Input-image fitting; three seeds |
 | 2D encoding L=6 | 31.97 ± 0.37 dB | 0.908 | Input-image fitting; three seeds |
 
-NeRF: 20,000 training steps on an RTX 4070 Ti, approximately 104 seconds including validation. Encoding ± values are sample standard deviations across seeds. Stereo reports coverage and consistency, **not depth accuracy**, because local depth ground truth is unavailable.
+NeRF: 20,000 training steps on an RTX 4070 Ti, approximately 104 seconds including validation. Encoding ± values are sample standard deviations across seeds. Stereo metrics measure coverage and left–right consistency; depth ground truth is unavailable.
 
 ## Installation and quick start
 
@@ -40,7 +42,7 @@ python -m venv '.venv'
 & '.\.venv\Scripts\python.exe' -m pip install -e '.[dev]'
 & '.\.venv\Scripts\python.exe' -m pytest -q
 
-# Prepare inputs from your authorized local course archive; inputs are not in Git.
+# Prepare inputs from your local course archive; datasets are excluded from Git.
 & '.\.venv\Scripts\python.exe' 'scripts/prepare_data.py' --zip 'C:\path with spaces\HWs&Project.zip'
 & '.\.venv\Scripts\python.exe' -m vision5800 stereo
 & '.\.venv\Scripts\python.exe' -m vision5800.research benchmark --output 'outputs/benchmark'
@@ -64,4 +66,4 @@ CIS 5800 supplied the task, data, camera calibration, architecture, and framewor
 - [Experiment report: protocol, hardware, results, failure analysis, and commands](docs/EXPERIMENT_REPORT.md)
 - [Camera/rendering audit and preserved baseline](docs/AUDIT.md)
 - [Raw experiment metrics](docs/results/research/)
-- [Live project page](https://yixiaoliu.me/projects/3d-reconstruction-neural-rendering/) — figures, demonstrations and limitations
+- [Live project page](https://yixiaoliu.me/projects/3d-reconstruction-neural-rendering/) — figures, demonstrations and experiments
