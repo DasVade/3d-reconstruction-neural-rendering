@@ -57,11 +57,11 @@ Configuration: [configs/nerf_formal.json](configs/nerf_formal.json). Use a fresh
 
 ## Course origin and extensions
 
-CIS 5800 supplied the task, data, camera calibration, architecture, and framework. Extensions include an image-y ray-sign correction, analytic rendering tests, reproducible training and evaluation, and controlled comparisons, developed with coding-assistant support. This is a course-project reproduction and experimental extension. See [provenance](docs/PROVENANCE.md) and [publication conditions](docs/PUBLICATION_REVIEW.md); public redistribution remains unconfirmed.
+CIS 5800 supplied the task, data, camera calibration, architecture, and framework. Extensions include an image-y ray-sign correction, analytic rendering tests, reproducible training and evaluation, and controlled comparisons, developed with coding-assistant support. This is a course-project reproduction and experimental extension. See [provenance](docs/PROVENANCE.md) and [release/data notes](docs/PUBLICATION_REVIEW.md).
 
 ## Detailed experiments
 
 - [Experiment report: protocol, hardware, results, failure analysis, and commands](docs/EXPERIMENT_REPORT.md)
 - [Camera/rendering audit and preserved baseline](docs/AUDIT.md)
 - [Raw experiment metrics](docs/results/research/)
-- [Local English project page](docs/project/index.html) — static HTML; no public deployment
+- [Live project page](https://yixiaoliu.me/projects/3d-reconstruction-neural-rendering/) — figures, demonstrations and limitations

@@ -1,10 +1,17 @@
-# Publication conditions — checked 2026-10-17
+# Release and data notes
 
-**Status: public release is not cleared.** The owner has authorized uploading the existing Git history to a private GitHub repository for review. That authorization does not establish permission for public distribution of course solutions, framework code, datasets, or figures. The project page remains an undeployed local artifact. The checks below are the original October 17 review and remain applicable to any future public release.
+The owner confirmed on October 24, 2026 that course rules impose no restrictions on publication and authorized making this existing repository public. This supersedes the October 17 private/local-only publication notice. Coursework and dataset attribution remain intact. No experiments, algorithms or numerical results changed for this release.
 
-1. The supplied course archive contains no verified license granting public redistribution of the assignment solution/framework. The available [Fall 2025 CIS5800 page](https://sites.google.com/seas.upenn.edu/cis5800f2025) states an academic-integrity policy, but is a different offering and does not explicitly grant permission to publish Spring 2026 solutions. Attempts to access a Spring 2026 public page did not establish a policy. Instructor/course permission is still needed before publishing course-derived code. This is an unresolved permission, not a conclusion that publication is forbidden.
-2. The official [Middlebury MVS data page](https://vision.middlebury.edu/mview/data/) supplies TempleRing and its calibration documentation. The reviewed page/packaged README do not provide an explicit redistribution license. Prefer directing users to the official download rather than mirroring the dataset. The benchmark [overview](https://vision.middlebury.edu/mview/) says the ground-truth surface is not distributed; this repository does not contain local ground-truth depths and reports no depth accuracy.
-3. The official [bmild/nerf code license](https://github.com/bmild/nerf/blob/master/LICENSE) is MIT for the software. It does not by itself establish a license for the course-repacked `lego_data.npz`, all input imagery, or course-specific solutions. The exact repack provenance and image rights require confirmation. Dataset similarity is not proof of licensing.
-4. A local project page and report can be reviewed now. No course code, raw data, weights, report images or page has been uploaded in this task. The local page includes a publication-status notice. Before public release, verify both assignment-code permission and dataset/figure reuse conditions; then prepare a cleared subset with attribution. No blanket open-source license is assigned.
+[Live project page](https://yixiaoliu.me/projects/3d-reconstruction-neural-rendering/) · [Experiment report](EXPERIMENT_REPORT.md) · [Source provenance](PROVENANCE.md)
 
-Checked sources are linked above; permission was not requested from third parties and no message was sent.
+## Included and excluded
+
+Source, tests, configuration, selected display figures/animations and small numerical summaries are included. The owner previously confirmed permission for the selected website visuals. Raw TempleRing images/calibration packages, `lego_data.npz`, original and trained checkpoints, course archives/PDF packages, environments and full run outputs remain local and ignored. Git history contains no tracked raw dataset or model-weight files in the scanned reachable objects.
+
+## Acquiring inputs
+
+The CLI tests run without the private data. For full reproduction, use your authorized local course package with `scripts/prepare_data.py`; the script extracts inputs locally and does not download or redistribute them. It cannot run data-dependent experiments from this repository alone.
+
+TempleRing originates from the [Middlebury MVS benchmark](https://vision.middlebury.edu/mview/data/); use its official download and original creator attribution. The local `lego_data.npz` is a course repack; do not infer input-image or checkpoint licensing from a software license. The [bmild NeRF software license](https://github.com/bmild/nerf/blob/master/LICENSE) applies to that software, not automatically to this course repack. Existing source references, including the rectification reference in `stereo.py`, are retained. No blanket license is assigned to third-party data or course source.
+
+The public page distinguishes the fresh six-view 100×100 NeRF test benchmark from the historical camera sweep, which contains training poses. No depth ground-truth accuracy is reported for stereo.

@@ -1,6 +1,6 @@
 # Source and contribution boundaries
 
-Source archive: `HWs&Project.zip`, supplied by the user. This is a local reproducibility consolidation of CIS 5800 coursework, not a new research method.
+Source archive: `HWs&Project.zip`, supplied by the user. This is a reproducibility consolidation of CIS 5800 coursework, not a new research method.
 
 | Repository module | Origin | Consolidation changes |
 |---|---|---|
@@ -23,4 +23,4 @@ No open-source license is asserted for third-party coursework or data. The local
 
 `research.py`, audit and experiment scripts, new analytic/projection tests, configuration, results, English report and local page were added with coding-assistant support. They implement validation-based checkpoint selection, explicit train/validation/test sets, independent-view PSNR/SSIM, matched stereo runs and controlled studies. These are engineering/experimental extensions to the course architecture, not original NeRF/stereo methods. Applicant-specific claims of personal authorship require familiarity with and truthful attribution of the work.
 
-Verified new runs are documented in EXPERIMENT_REPORT.md; the October 12 REPRODUCTION.md remains a historical record. PUBLICATION_REVIEW.md records checked sources and unresolved release conditions. No public upload was performed.
+Verified new runs are documented in EXPERIMENT_REPORT.md; the October 12 REPRODUCTION.md remains a historical record. PUBLICATION_REVIEW.md records current release and data-acquisition notes. The owner confirmed on October 24, 2026 that course rules impose no restrictions and authorized public release of the existing source repository.

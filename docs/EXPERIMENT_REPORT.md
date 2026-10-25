@@ -2,7 +2,7 @@
 
 University of Pennsylvania CIS 5800 course project · Reproduction and experimental extension · 2026-10-17
 
-**Local review only.** Course-code and dataset redistribution permissions remain unresolved; see [publication review](PUBLICATION_REVIEW.md). This is a static-scene reconstruction project with known camera calibration, not SLAM or a dynamic world model.
+Public source release authorized by the owner on October 24, 2026; raw datasets and checkpoints are excluded. See [release/data notes](PUBLICATION_REVIEW.md) and the [live project page](https://yixiaoliu.me/projects/3d-reconstruction-neural-rendering/). This is a static-scene reconstruction project with known camera calibration, not SLAM or a dynamic world model.
 
 ## Scope and contribution
 
